@@ -8,9 +8,9 @@ spring:
     # 解决时间差的问题
     time-zone: GMT+8
   datasource:
-    url: jdbc:mysql://111.230.15.168/myshop?characterEncoding=utf8
-    username: hzzone
-    password: 123456
+    url: jdbc:mysql://39.108.74.138/hereis?characterEncoding=utf8
+    username: root
+    password: zsygdsbWC
     driver-class-name: com.mysql.jdbc.Driver
     tomcat:
       max-wait: 10000

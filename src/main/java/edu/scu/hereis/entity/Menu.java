@@ -198,4 +198,16 @@ public class Menu {
     public void setSpotId(Integer spotId) {
         this.spotId = spotId;
     }
+
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "id=" + id +
+                ", price=" + price +
+                ", category='" + category + '\'' +
+                ", name='" + name + '\'' +
+                ", imgPath='" + imgPath + '\'' +
+                ", spotId=" + spotId +
+                '}';
+    }
 }
