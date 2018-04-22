@@ -66,4 +66,22 @@ public class CourseKey {
     public void setCourseNo(String courseNo) {
         this.courseNo = courseNo == null ? null : courseNo.trim();
     }
+
+    /**
+     * This method was written by Vicent_Chen.
+     */
+    public CourseKey() {
+    }
+
+    /**
+     * This method was written by Vicent_Chen.
+     * This method sets the value of the database column course.course_id and course.course_no
+     *
+     * @param courseId the value for course.course_id
+     * @param courseNo the value for course.course_no
+     */
+    public CourseKey(String courseId, String courseNo) {
+        this.courseId = courseId;
+        this.courseNo = courseNo;
+    }
 }

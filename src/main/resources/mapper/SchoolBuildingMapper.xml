@@ -300,4 +300,10 @@
       spot_id = #{spotId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!-- 查找楼层数 -->
+  <select id="selectMaxFloorBySpotId" parameterType="java.lang.Integer" resultType="Integer">
+    select ifnull(max(school_building.floor), 0) from school_building
+    where spot_id = #{spot} ;
+  </select>
 </mapper>
