@@ -98,4 +98,11 @@ public interface MenuMapper {
      * @mbg.generated Fri Apr 20 16:26:09 CST 2018
      */
     int updateByPrimaryKey(Menu record);
+
+    /**
+     * 根据传入的spotId获取该id下的所有分类
+     * @param spotId 指定spotId
+     * @return 返回所有分类的List
+     */
+    List<String> selectAllCategoryBySpotId(int spotId);
 }
