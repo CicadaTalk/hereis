@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 import static edu.scu.hereis.exception.SpotException.*;
 import static org.junit.Assert.*;
 
@@ -48,6 +50,7 @@ public class SpotServiceTest {
     Spot additionIDSpot;
 
     Spot spotToUpdate;
+    Spot GPSSpot1, GPSSpot2;
 
     @Before
     public void init() {
@@ -97,6 +100,16 @@ public class SpotServiceTest {
 
         spotToUpdate = new Spot(); spotToUpdate.setId(CURRENT_MAX_ID + 1);
         spotToUpdate.setName("spotToUpdate");
+
+        GPSSpot1 = new Spot();
+        GPSSpot1.setGpsLng(100.45); GPSSpot1.setGpsLat(100.45);
+        GPSSpot1.setName("GPSSpot1"); GPSSpot1.setBriefIntro("GSPSpot1");
+        GPSSpot1.setBgImg("GPSSpot1"); GPSSpot1.setCategory("GPSSpot1");
+
+        GPSSpot2 = new Spot();
+        GPSSpot2.setGpsLng(90.45); GPSSpot2.setGpsLat(90.45);
+        GPSSpot2.setName("GPSSpot2"); GPSSpot2.setBriefIntro("GSPSpot2");
+        GPSSpot2.setBgImg("GPSSpot2"); GPSSpot2.setCategory("GPSSpot2");
     }
 
     @Test
@@ -179,5 +192,16 @@ public class SpotServiceTest {
         assertEquals(CURRENT_ROW_NUM + 1, spotService.getAllSpots().size());
         spotService.deleteSpot(CURRENT_MAX_ID + 2);
         assertEquals(CURRENT_ROW_NUM, spotService.getAllSpots().size());
+    }
+
+    @Test
+    public void test006getSpotByGPS() {
+        spotService.insertSpot(GPSSpot1); spotService.insertSpot(GPSSpot2);
+        List<Spot> spotList = spotService.getSpotsByGPS(100.0, 101.0, 100.0, 101.0);
+        assertEquals(1, spotList.size());
+        spotList = spotService.getSpotsByGPS(90.0, 101.0, 90.0, 101.0);
+        assertEquals(2, spotList.size());
+        spotService.deleteSpot(CURRENT_MAX_ID + 3);
+        spotService.deleteSpot(CURRENT_MAX_ID + 4);
     }
 }

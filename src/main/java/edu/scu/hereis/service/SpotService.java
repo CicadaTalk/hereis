@@ -110,6 +110,21 @@ public class SpotService {
     }
 
     /**
+     * 根据GPS范围查找地点，可能返回空列表
+     * @param beginLng
+     * @param endLng
+     * @param beginLat
+     * @param endLat
+     * @return
+     */
+    public List<Spot> getSpotsByGPS(Double beginLng, Double endLng, Double beginLat, Double endLat) {
+        SpotExample spotExample = new SpotExample();
+        spotExample.createCriteria().andGpsLngBetween(beginLng, endLng).andGpsLatBetween(beginLat, endLat);
+        List<Spot> spotList = spotMapper.selectByExample(spotExample);
+        return spotList;
+    }
+
+    /**
      * 返回所有地点
      * 若地点不存在则为空的列表
      * @return
