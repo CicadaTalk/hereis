@@ -41,4 +41,30 @@ public class ActivityServiceTest {
         activityService.deleteActivity(1);
     }
 
+    @Test
+    public void getActivityById() throws Exception {
+
+        activityService.getActivityById(1);
+    }
+
+    @Test
+    public void getActivitiesBySpotId() throws Exception {
+
+        activityService.getActivitiesBySpotId(1);
+    }
+
+    @Test
+    public void updateActivity() throws Exception {
+
+        Activity activity = new Activity();
+        activity.setId(1);
+        activity.setSpotId(1);
+        activity.setIntro("something update");
+        activity.setBeginTime(new Date());
+        activity.setEndTime(new Date());
+        activity.setName("some");
+
+        activityService.updateActivity(activity);
+    }
+
 }

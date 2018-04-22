@@ -38,4 +38,21 @@ public class ScenicSpotServiceTest {
         scenicSpotService.deleteScenicSpot(1);
     }
 
+    @Test
+    public void getScenicSpotById() throws Exception {
+
+        scenicSpotService.getScenicSpotById(1);
+    }
+
+    @Test
+    public void updateScenicSpot() throws Exception {
+
+        ScenicSpot scenicSpot = new ScenicSpot();
+        scenicSpot.setSpotId(1);
+        scenicSpot.setIntro("something update");
+        scenicSpot.setWarning("no waring");
+
+        scenicSpotService.updateScenicSpot(scenicSpot);
+    }
+
 }
