@@ -56,4 +56,47 @@ public class ScenicSpotService {
 			throw new ScenicSpotException(e.UNKNOWN_ERROR);
 		}
 	}
+
+	/**
+	 * 传入景点ID，获取对应景点的信息
+	 * @param id  需要获取信息的景点ID
+	 * @return
+	 */
+	@Transactional
+	public ScenicSpot getScenicSpotById(int id) {
+		// 检查输入是否为空
+		if (id <= 0){
+			throw new ScenicSpotException(ScenicSpotException.SCENIC_SPOT_ID_EMPTY_ERROR);
+		}
+
+		// 根据输入的景点ID，获取景点对象
+		try {
+			ScenicSpot scenicSpot;
+			ScenicSpotMapper scenicSpotMapper = sqlSession.getMapper(ScenicSpotMapper.class);
+			scenicSpot = scenicSpotMapper.selectByPrimaryKey(id);
+			return scenicSpot;
+		} catch (ScenicSpotException e){
+			throw new ScenicSpotException(e.UNKNOWN_ERROR);
+		}
+	}
+
+	/**
+	 * 传入景点对象，更新对应景点的信息
+	 * @param scenicSpot  需要更新的景点对象
+	 */
+	@Transactional
+	public void updateScenicSpot(ScenicSpot scenicSpot) {
+		// 检查输入是否为空
+		if (scenicSpot == null){
+			throw new ScenicSpotException(ScenicSpotException.SCENIC_SPOT_EMPTY_ERROR);
+		}
+
+		// 根据传入的景点对象，更新信息
+		try {
+			ScenicSpotMapper scenicSpotMapper = sqlSession.getMapper(ScenicSpotMapper.class);
+			scenicSpotMapper.updateByPrimaryKeySelective(scenicSpot);
+		} catch (ScenicSpotException e){
+			throw new ScenicSpotException(e.UNKNOWN_ERROR);
+		}
+	}
 }
