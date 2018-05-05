@@ -11,14 +11,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
- * @Description: 用于用户和角色的认证配置
+ * 用于用户和角色的认证配置
  */
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     /**
-     * 自己编写的用户信息的
+     * 自己编写的用户信息的服务类
      */
     @Autowired
     private MyUserDetailsService myUserDetailsService;
