@@ -8,6 +8,7 @@ import edu.scu.hereis.exception.CourseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class CourseService {
      * 插入课程，若数据库中主键已存在，抛出异常
      * @param course 课程属性均不得为空
      */
+    @Transactional
     public void insertCourse(Course course) {
         if (course == null) {
             throw new CourseException(COURSE_EMPTY_ERROR_CODE, COURSE_EMPTY_ERROR);
@@ -60,6 +62,7 @@ public class CourseService {
      * 插入课程列表
      * @param courseList
      */
+    @Transactional
     public void insertCourseList(List<Course> courseList) {
         for (Course course : courseList) {
             insertCourse(course);
@@ -70,6 +73,7 @@ public class CourseService {
      * 根据课程ID、No删除课程
      * @param courseKey
      */
+    @Transactional
     public void deleteCourseByKey(CourseKey courseKey) {
         try {
             courseMapper.deleteByPrimaryKey(courseKey);
@@ -81,6 +85,7 @@ public class CourseService {
     /**
      * 删除所有课程
      */
+    @Transactional
     public void deleteAllCourses() {
         try {
             CourseExample courseExample = new CourseExample();
@@ -95,6 +100,7 @@ public class CourseService {
      * 更新课程
      * @param course 课程ID，No均不得为空
      */
+    @Transactional
     public void updateCourse(Course course) {
         if (course == null) {
             throw new CourseException(COURSE_EMPTY_ERROR_CODE, COURSE_EMPTY_ERROR);

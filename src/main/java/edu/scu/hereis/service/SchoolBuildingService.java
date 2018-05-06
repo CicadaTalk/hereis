@@ -7,6 +7,7 @@ import edu.scu.hereis.exception.SchoolBuildingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class SchoolBuildingService {
      * 插入schoolBuilding，自动忽略已有的ID
      * @param schoolBuilding 除ID，isFree外所有字段不得为空
      */
+    @Transactional
     public void insertSchoolBuilding(SchoolBuilding schoolBuilding) {
         if (schoolBuilding == null) {
             throw new SchoolBuildingException(SB_EMPTY_ERROR_CODE, SB_EMPTY_ERROR);
@@ -52,6 +54,7 @@ public class SchoolBuildingService {
      * 根据ID更新SchoolBuilding
      * @param schoolBuilding
      */
+    @Transactional
     public void updateSchoolBuilding(SchoolBuilding schoolBuilding) {
         if (schoolBuilding == null || schoolBuilding.getId() == null)
             throw new SchoolBuildingException(SB_EMPTY_ERROR_CODE, SB_EMPTY_ERROR);
@@ -68,6 +71,7 @@ public class SchoolBuildingService {
      * 根据ID删除SchoolBuilding
      * @param id
      */
+    @Transactional
     public void deleteSchoolBuilding(Integer id) {
         try {
             schoolBuildingMapper.deleteByPrimaryKey(id);
