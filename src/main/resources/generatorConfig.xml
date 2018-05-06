@@ -8,7 +8,7 @@
     <classPathEntry location="F:/Maven/repository/mysql/mysql-connector-java/6.0.6/mysql-connector-java-6.0.6.jar" />
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <jdbcConnection driverClass = "com.mysql.jdbc.Driver"
-                        connectionURL = "JDBCURL"
+                        connectionURL = "39.108.74.138/hereis?characterEncoding=utf8"
                         userId = "USERID"
                         password = "PASSWORD">
             <!--忽略MySQL自带表-->
@@ -42,6 +42,7 @@
         <table tableName="menu" domainObjectName="Menu"/>
         <table tableName="scenic_spot" domainObjectName="ScenicSpot"/>
         <table tableName="activity" domainObjectName="Activity"/>
+        <table tableName="comment" domainObjectName="Comment"/>
 
     </context>
 </generatorConfiguration>
