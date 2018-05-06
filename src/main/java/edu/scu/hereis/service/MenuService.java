@@ -78,15 +78,36 @@ public class MenuService {
     }
 
     /**
+     * 传入spotId，获取该spotId下的所有菜单
+     *
+     * @param spotId
+     * @return 返回所有的菜单列表
+     */
+    public List<Menu> getAllMenuBySpotId(Integer spotId) {
+        //检查输入
+        if (null == spotId || spotId <= 0) {
+            throw new MenuServiceException(MenuServiceException.INVALID_INPUT);
+        }
+
+        //获取该spotId下的所有菜单
+        MenuMapper menuMapper = sqlSession.getMapper(MenuMapper.class);
+        MenuExample menuExample = new MenuExample();
+        menuExample.createCriteria().andSpotIdEqualTo(spotId);
+        List<Menu> menus = menuMapper.selectByExample(menuExample);
+
+        return menus;
+    }
+
+    /**
      * 传入spot_id，获取该spot_id下的所有菜单分类
      *
      * @param spotId
      * @return 返回所有菜单分类
      */
-    public List<String> getAllCategoryBySpotId(int spotId) {
+    public List<String> getAllCategoryBySpotId(Integer spotId) {
 
         //检查输入
-        if (spotId <= 0) {
+        if (null == spotId || spotId <= 0) {
             throw new MenuServiceException(MenuServiceException.INVALID_INPUT);
         }
 
@@ -126,10 +147,10 @@ public class MenuService {
      * @param id 菜单的id
      * @return 对应的菜单信息
      */
-    public Menu getMenu(int id) {
+    public Menu getMenu(Integer id) {
 
         //检查输入
-        if (id <= 0) {
+        if (null == id || id <= 0) {
             throw new MenuServiceException(MenuServiceException.INVALID_INPUT);
         }
 
