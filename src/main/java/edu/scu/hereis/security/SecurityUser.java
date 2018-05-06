@@ -8,6 +8,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * 将用户信息映射到Security的登录角色上
+ */
 public class SecurityUser extends User implements UserDetails {
 
     /**

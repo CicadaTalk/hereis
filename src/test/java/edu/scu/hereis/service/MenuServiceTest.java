@@ -86,4 +86,18 @@ public class MenuServiceTest {
         Menu menu = menuService.getMenu(5);
         System.out.println(menu);
     }
+
+    /**
+     * 测试通过
+     */
+    @Test
+    public void getAllMenuBySpotId() {
+        List<Menu> menus = menuService.getAllMenuBySpotId(1);
+
+        for (Menu menu :
+                menus) {
+            System.out.println(menu);
+        }
+
+    }
 }

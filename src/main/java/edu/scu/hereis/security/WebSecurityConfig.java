@@ -11,10 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
- * @Author: 周秦春
- * @Description: 用于用户和角色的认证配置
- * @Date: Create in 2017/9/4 19:49
- * @ModifyBy:
+ * 用于用户和角色的认证配置
  */
 @Configuration
 @EnableWebSecurity

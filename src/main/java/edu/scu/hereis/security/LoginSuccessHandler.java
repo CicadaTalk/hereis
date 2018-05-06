@@ -10,10 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @Author: 周秦春
- * @Description: 登陆成功后的处理
- * @Date: Create in 2017/9/4 20:32
- * @ModifyBy:
+ * 登陆成功后的处理
  */
 @Component
 public class LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
