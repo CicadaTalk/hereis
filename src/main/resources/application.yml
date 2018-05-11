@@ -25,3 +25,10 @@ spring:
 mybatis:
   mapperlocations: /mapper/**Mapper.xml
   type-aliases-package: edu.scu.hereis.entity
+
+# 图片路径配置
+# TODO: configure correct path
+image:
+  image-folder-path: F:/WeiXin/code/hereis/src/main/resources/static/images/
+  image-relate-path: /images/
+  default-img-URL: /images/default.png
