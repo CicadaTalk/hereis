@@ -304,6 +304,6 @@
 
   <!--新增的接口-->
   <select id="selectAllCategoryBySpotId" parameterType="int" resultType="String">
-    SELECT category FROM menu WHERE spot_id = #{spotId}
+    SELECT category FROM menu WHERE spot_id = #{spotId} GROUP BY category
   </select>
 </mapper>

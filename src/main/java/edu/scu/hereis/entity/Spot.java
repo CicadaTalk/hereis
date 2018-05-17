@@ -231,4 +231,17 @@ public class Spot {
     public void setCategory(String category) {
         this.category = category == null ? null : category.trim();
     }
+
+    @Override
+    public String toString() {
+        return "Spot{" +
+                "id=" + id +
+                ", gpsLng=" + gpsLng +
+                ", gpsLat=" + gpsLat +
+                ", name='" + name + '\'' +
+                ", briefIntro='" + briefIntro + '\'' +
+                ", bgImg='" + bgImg + '\'' +
+                ", category='" + category + '\'' +
+                '}';
+    }
 }
