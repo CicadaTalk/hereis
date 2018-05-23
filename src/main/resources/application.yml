@@ -1,7 +1,17 @@
 server:
-  port: 8080
+#  port: 8443
+  port: 443
   servlet:
     path: /
+  ssl:
+#    key-store: src/main/resources/214252726770306.pfx
+    key-store: /home/hereis/214252726770306.pfx
+    #key-password: 214252726770306
+    key-store-type: PKCS12
+    key-alias: 1
+    key-store-password: zsygdsbWC
+    enabled: true
+
 
 spring:
   jackson:
@@ -30,6 +40,6 @@ mybatis:
 # TODO: configure correct path
 image:
 #  image-folder-path: F:/WeiXin/code/hereis/src/main/resources/static/images/
-  image-folder-path: /home/hereis/image/
+  image-folder-path: /home/hereis/images/
   image-relate-path: /images/
   default-img-URL: /images/default.png
