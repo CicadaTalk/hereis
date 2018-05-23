@@ -2,6 +2,7 @@ package edu.scu.hereis.wxresult;
 
 import edu.scu.hereis.entity.Comment;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +18,7 @@ public class CommentResult {
     //进行评论的用户ID
     private String userId;
     //评论时间
-    private Date time;
+    private String time;
 
     /**
      * 根据传入的Comment列表生成CommentResult列表
@@ -37,7 +38,9 @@ public class CommentResult {
         this.comment = comment.getComment();
         this.spotId = comment.getSpotId();
         this.userId = comment.getUserId();
-        this.time = comment.getTime();
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        this.time = format.format(comment.getTime());
     }
 
     public int getCommentId() {
@@ -72,11 +75,11 @@ public class CommentResult {
         this.userId = userId;
     }
 
-    public Date getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(String time) {
         this.time = time;
     }
 }
