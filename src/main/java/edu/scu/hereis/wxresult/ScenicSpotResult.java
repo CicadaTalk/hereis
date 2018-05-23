@@ -1,6 +1,7 @@
 package edu.scu.hereis.wxresult;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -102,12 +103,12 @@ class Activity {
     /**
      * 活动开始时间
      */
-    private Date beginTime;
+    private String beginTime;
 
     /**
      * 活动结束时间
      */
-    private Date endTime;
+    private String endTime;
 
     /**
      * 活动名称
@@ -118,8 +119,11 @@ class Activity {
         this.activityId = activity.getId();
         this.spotId = activity.getSpotId();
         this.intro = activity.getIntro();
-        this.beginTime = activity.getBeginTime();
-        this.endTime = activity.getEndTime();
+
+        SimpleDateFormat format = new SimpleDateFormat("MM-dd HH:mm");
+        this.beginTime = format.format(activity.getBeginTime());
+        this.endTime = format.format(activity.getEndTime());
+
         this.name = activity.getName();
     }
 
@@ -147,19 +151,19 @@ class Activity {
         this.intro = intro;
     }
 
-    public Date getBeginTime() {
+    public String getBeginTime() {
         return beginTime;
     }
 
-    public void setBeginTime(Date beginTime) {
+    public void setBeginTime(String beginTime) {
         this.beginTime = beginTime;
     }
 
-    public Date getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Date endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
