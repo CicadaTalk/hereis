@@ -4,6 +4,8 @@ import edu.scu.hereis.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,10 +15,15 @@ import java.util.Collection;
  */
 public class SecurityUser extends User implements UserDetails {
 
+
     /**
      * 序列化版本号
      */
     private static final long serialVersionUID = 1L;
+
+
+    //登录时使用的code，相当于userName
+    private String LoginCode;
 
     public SecurityUser(User user) {
 
@@ -42,15 +49,25 @@ public class SecurityUser extends User implements UserDetails {
         return authorities;
     }
 
+    public String getLoginCode() {
+        return LoginCode;
+    }
+
+    public void setLoginCode(String loginCode) {
+        LoginCode = loginCode;
+    }
+
     @Override
     public String getPassword() {
-        return "";
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
+        return passwordEncoder.encode("hereis");
     }
 
     @Override
     public String getUsername() {
-        return getHereisId();
+        return getLoginCode();
     }
+
 
     @Override
     public boolean isAccountNonExpired() {
