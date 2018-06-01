@@ -1,16 +1,16 @@
 server:
 #  port: 8443
-  port: 443
+  port: 8089
   servlet:
     path: /
-  ssl:
-#    key-store: src/main/resources/214252726770306.pfx
-    key-store: /home/hereis/214252726770306.pfx
-    #key-password: 214252726770306
-    key-store-type: PKCS12
-    key-alias: 1
-    key-store-password: zsygdsbWC
-    enabled: true
+#  ssl:
+##    key-store: src/main/resources/214252726770306.pfx
+#    key-store: /home/hereis/214252726770306.pfx
+#    #key-password: 214252726770306
+#    key-store-type: PKCS12
+#    key-alias: 1
+#    key-store-password: zsygdsbWC
+#    enabled: true
 
 
 spring:
@@ -43,3 +43,6 @@ image:
   image-folder-path: /home/hereis/images/
   image-relate-path: /images/
   default-img-URL: /images/default.png
+
+#小程序AppId和AppSecret配置的配置文件的位置
+configure-file-path: /Users/zhouqinchun/IdeaProjects/hereis/src/main/resources/configure.properties
