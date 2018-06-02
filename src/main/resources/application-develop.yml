@@ -1,0 +1,48 @@
+server:
+#  port: 8443
+  port: 8089
+  servlet:
+    path: /
+#  ssl:
+##    key-store: src/main/resources/214252726770306.pfx
+#    key-store: /home/hereis/214252726770306.pfx
+#    #key-password: 214252726770306
+#    key-store-type: PKCS12
+#    key-alias: 1
+#    key-store-password: zsygdsbWC
+#    enabled: true
+
+
+spring:
+  jackson:
+    # 解决时间差的问题
+    time-zone: GMT+8
+  datasource:
+    url: jdbc:mysql://39.108.74.138/hereis?characterEncoding=utf8
+    username: root
+    password: zsygdsbWC
+    driver-class-name: com.mysql.jdbc.Driver
+    tomcat:
+      max-wait: 10000
+      max-active: 30
+    hikari:
+      connection-timeout: 30000
+      idle-timeout: 600000
+      maximum-pool-size: 15
+      max-lifetime: 1800000
+
+# Mybatis的配置
+mybatis:
+  mapperlocations: /mapper/**Mapper.xml
+  type-aliases-package: edu.scu.hereis.entity
+
+# 图片路径配置
+# TODO: configure correct path
+image:
+#  image-folder-path: F:/WeiXin/code/hereis/src/main/resources/static/images/
+  image-folder-path: /home/hereis/images/
+  image-relate-path: /images/
+  default-img-URL: /images/default.png
+
+#小程序AppId和AppSecret配置的配置文件的位置
+configure-file-path: /Users/zhouqinchun/IdeaProjects/hereis/src/main/resources/configure.properties
