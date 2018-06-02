@@ -8,8 +8,8 @@
     <classPathEntry location="F:/Maven/repository/mysql/mysql-connector-java/6.0.6/mysql-connector-java-6.0.6.jar" />
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <jdbcConnection driverClass = "com.mysql.jdbc.Driver"
-                        connectionURL = "39.108.74.138/hereis?characterEncoding=utf8"
-                        userId = "USERID"
+                        connectionURL = "jdbc:mysql://39.108.74.138/hereis?characterEncoding=utf8"
+                        userId = "USERNAME"
                         password = "PASSWORD">
             <!--忽略MySQL自带表-->
             <property name="nullCatalogMeansCurrent" value="true" />
