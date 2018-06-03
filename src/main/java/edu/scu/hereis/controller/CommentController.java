@@ -43,14 +43,23 @@ public class CommentController {
     public List<CommentResult> getCommentById(int spotId) {
 
         List<Comment> commentList = commentService.getCommentBySpot(spotId);
-        List<CommentResult> commentResults = CommentResult.toList(commentList);
+        List<CommentResult> commentResults = new ArrayList<CommentResult>();
 
-        return  commentResults;
+        //查询用户信息,封装返回结果
+        User user = null;
+        CommentResult commentResult = null;
+        for (Comment comment :
+                commentList) {
+            user = userService.getUserHereisId(comment.getUserId());
+            commentResults.add(new CommentResult(comment, user));
+        }
+
+        return commentResults;
     }
 
     @ResponseBody
     @PostMapping("/addComment")
-    public String addComment(String code,String content,Integer spotId){
+    public String addComment(String code,String content,Integer spotId,String nickName,String avatarUrl){
 
         //判断登录用户的信息
         //进行Http请求从微信服务器获取用户信息
@@ -71,16 +80,19 @@ public class CommentController {
             return "登录失败";
         }
 
-        //如果不存在此用户，则新增到数据库
-        User user = null;
+        //如果不存在此用户，则新增到数据库,如果存在，则跟新用户头像、昵称信息
+        User user = new User();;
+        user.setHereisId(openid);
+        user.setName(nickName);//用户昵称
+        user.setImgPath(avatarUrl);//用户头像
+
         if (!userService.isExsist(openid)) {
-            user = new User();
-            user.setImgPath(configuration.getDefaultImagePath());
-            user.setHereisId(openid);
+            //用户权限
             user.setRole(UserService.UNAUTHORIZED);
             userService.addUser(user);
-        } else {//如果存在，则读取用户信息
-            user = userService.getUserHereisId(openid);
+        } else {//如果存在，则更新用户信息
+
+            userService.updateUser(user);
         }
 
         //添加评论
