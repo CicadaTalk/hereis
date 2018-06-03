@@ -12,7 +12,6 @@ import edu.scu.hereis.exception.SpotException;
 import edu.scu.hereis.exception.UserServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,7 +32,8 @@ import static edu.scu.hereis.exception.UserServiceException.*;
  * Created by Vicent_Chen on 2018/5/8.
  */
 @Service
-public class FileService {
+public class
+FileService {
 
     @Value("${image.image-folder-path}")
     private String image_folder_path;
@@ -55,6 +55,7 @@ public class FileService {
      * 上传用户头像，若用户头像已经存在则删除原有文件，写入当前文件并对数据库进行覆盖
      * @param hereIsId
      */
+    @Deprecated
     @Transactional
     public void uploadUserImage(String hereIsId, MultipartFile file) {
 

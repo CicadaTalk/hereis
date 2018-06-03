@@ -43,6 +43,7 @@ image:
   image-folder-path: /home/hereis/images/
   image-relate-path: /images/
   default-img-URL: /images/default.png
+  url-prefix: https://lazyzhou.xin/images/
 
 #小程序AppId和AppSecret配置的配置文件的位置
 configure-file-path: /home/hereis/configure.properties
