@@ -16,9 +16,6 @@ public class FileController {
     @Autowired
     private FileService fileService;
 
-    @Value("${image.url-prefix}")
-    private String imageUrlPrefix;
-
     /**
      * 上传用户头像
      *
@@ -46,7 +43,7 @@ public class FileController {
     @PostMapping("/uploadSpotImage")
     public String uploadSpotImage(Integer spotId, MultipartFile file) {
         fileService.uploadSpotImage(spotId, file);
-        String imageUrl = imageUrlPrefix + fileService.getSpotImageURL(spotId);
+        String imageUrl = fileService.getSpotImageURL(spotId);
         return imageUrl;
     }
 
@@ -61,7 +58,7 @@ public class FileController {
     @PostMapping("/uploadMenuImage")
     public String uploadMenuImage(Integer menuId, MultipartFile file) {
         fileService.uploadMenuImage(menuId, file);
-        String imageUrl = imageUrlPrefix + fileService.getMenuImageURL(menuId);
+        String imageUrl = fileService.getMenuImageURL(menuId);
         return imageUrl;
     }
 
@@ -74,7 +71,7 @@ public class FileController {
     @ResponseBody
     @GetMapping("/getSpotImage")
     public String getSpotImage(Integer spotId) {
-        return imageUrlPrefix + fileService.getSpotImageURL(spotId);
+        return fileService.getSpotImageURL(spotId);
     }
 
     /**
@@ -86,7 +83,7 @@ public class FileController {
     @ResponseBody
     @GetMapping("/getMenuImage")
     public String getMenuImage(Integer menuId) {
-        return imageUrlPrefix + fileService.getMenuImageURL(menuId);
+        return fileService.getMenuImageURL(menuId);
     }
 
     /**

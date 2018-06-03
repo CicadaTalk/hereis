@@ -2,6 +2,7 @@ package edu.scu.hereis.wxresult;
 
 import edu.scu.hereis.entity.Spot;
 import edu.scu.hereis.exception.SpotException;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,33 +14,22 @@ import static edu.scu.hereis.exception.SpotException.*;
  */
 public class SpotResult {
 
+
+
     private Integer id;
     private String name;
     private String briefIntro;
     private String img;
+    private Double gpsLng;
+    private Double gpsLat;
 
-    public static SpotResult getSpotResult(Spot spot) {
-        if (spot == null) {
-            throw new SpotException(SPOT_EMPTY_ERROR_CODE, SPOT_EMPTY_ERROR);
-        }
-
-        SpotResult spotResult = new SpotResult(spot.getId(), spot.getName(), spot.getBriefIntro(), spot.getBgImg());
-        return spotResult;
-    }
-
-    public static List<SpotResult> getSpotResultList(List<Spot> spotList) {
-        List<SpotResult> spotResults = new ArrayList<>();
-        for (Spot s : spotList) {
-            spotResults.add(getSpotResult(s));
-        }
-        return spotResults;
-    }
-
-    public SpotResult(Integer id, String name, String briefIntro, String img) {
+    public SpotResult(Integer id, String name, String briefIntro, String img, Double gpsLng, Double gpsLat) {
         this.id = id;
         this.name = name;
         this.briefIntro = briefIntro;
         this.img = img;
+        this.gpsLng = gpsLng;
+        this.gpsLat = gpsLat;
     }
 
     public Integer getId() {
@@ -72,5 +62,21 @@ public class SpotResult {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public Double getGpsLng() {
+        return gpsLng;
+    }
+
+    public void setGpsLng(Double gpsLng) {
+        this.gpsLng = gpsLng;
+    }
+
+    public Double getGpsLat() {
+        return gpsLat;
+    }
+
+    public void setGpsLat(Double gpsLat) {
+        this.gpsLat = gpsLat;
     }
 }
