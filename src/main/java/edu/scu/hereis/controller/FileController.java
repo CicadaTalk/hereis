@@ -2,9 +2,9 @@ package edu.scu.hereis.controller;
 
 import edu.scu.hereis.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -16,12 +16,17 @@ public class FileController {
     @Autowired
     private FileService fileService;
 
+    @Value("${image.url-prefix}")
+    private String imageUrlPrefix;
+
     /**
      * 上传用户头像
+     *
      * @param file 用户头像
      * @return 用户头像URL
      */
-    @RequestMapping("/uploadUserImage")
+    @ResponseBody
+    @PostMapping("/uploadUserImage")
     public String uploadUserImage(MultipartFile file) {
         // TODO: get hereisId
         String hereIsId = null;
@@ -32,27 +37,67 @@ public class FileController {
 
     /**
      * 上传景点图片
+     *
      * @param spotId 景点ID
-     * @param file 景点图片
+     * @param file   景点图片
      * @return 景点图片URL
      */
-    @RequestMapping("/uploadSpotImage")
+    @ResponseBody
+    @PostMapping("/uploadSpotImage")
     public String uploadSpotImage(Integer spotId, MultipartFile file) {
         fileService.uploadSpotImage(spotId, file);
-        String imageUrl = fileService.getSpotImageURL(spotId);
+        String imageUrl = imageUrlPrefix + fileService.getSpotImageURL(spotId);
         return imageUrl;
     }
 
     /**
      * 上传菜单图片
+     *
      * @param menuId 菜单ID
-     * @param file 菜单图片
+     * @param file   菜单图片
      * @return 菜单图片URL
      */
-    @RequestMapping("/uploadMenuImage")
+    @ResponseBody
+    @PostMapping("/uploadMenuImage")
     public String uploadMenuImage(Integer menuId, MultipartFile file) {
         fileService.uploadMenuImage(menuId, file);
-        String imageUrl = fileService.getMenuImageURL(menuId);
+        String imageUrl = imageUrlPrefix + fileService.getMenuImageURL(menuId);
         return imageUrl;
+    }
+
+    /**
+     * 根据SpotId获取对应的背景图片Url
+     *
+     * @param spotId
+     * @return 背景图片Url
+     */
+    @ResponseBody
+    @GetMapping("/getSpotImage")
+    public String getSpotImage(Integer spotId) {
+        return imageUrlPrefix + fileService.getSpotImageURL(spotId);
+    }
+
+    /**
+     * 根据MenuId获取对应的菜单图片Url
+     *
+     * @param menuId
+     * @return 背景图片Url
+     */
+    @ResponseBody
+    @GetMapping("/getMenuImage")
+    public String getMenuImage(Integer menuId) {
+        return imageUrlPrefix + fileService.getMenuImageURL(menuId);
+    }
+
+    /**
+     * 根据hereisId获取对应的用户头像Url
+     *
+     * @param hereisId
+     * @return 背景图片Url
+     */
+    @ResponseBody
+    @GetMapping("/getUserImage")
+    public String getUserImage(String hereisId) {
+        return fileService.getUserImageURL(hereisId);
     }
 }
