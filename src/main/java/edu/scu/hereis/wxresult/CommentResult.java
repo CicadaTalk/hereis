@@ -1,11 +1,8 @@
 package edu.scu.hereis.wxresult;
 
 import edu.scu.hereis.entity.Comment;
-
+import edu.scu.hereis.entity.User;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class CommentResult {
 
@@ -20,28 +17,26 @@ public class CommentResult {
     //评论时间
     private String time;
 
-    /**
-     * 根据传入的Comment列表生成CommentResult列表
-     * @param commentList 评论列表
-     * @return CommentResult列表
-     */
-    public static List<CommentResult> toList(List<Comment> commentList) {
-        List<CommentResult> commentResultList = new ArrayList<>();
-        for (Comment comment : commentList) {
-            commentResultList.add(new CommentResult(comment));
-        }
-        return commentResultList;
-    }
+    //用户头像
+    private String imagePath;
+    //用户昵称
+    private String name;
 
-    public CommentResult(Comment comment) {
+    public CommentResult(Comment comment, User user) {
         this.commentId = comment.getId();
         this.comment = comment.getComment();
         this.spotId = comment.getSpotId();
         this.userId = comment.getUserId();
-
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         this.time = format.format(comment.getTime());
+
+        //获取用户的头像和昵称信息
+        if (null != user) {
+            this.imagePath = user.getImgPath();
+            this.name = user.getName();
+        }
     }
+
 
     public int getCommentId() {
         return commentId;
@@ -82,4 +77,22 @@ public class CommentResult {
     public void setTime(String time) {
         this.time = time;
     }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }
+
+
