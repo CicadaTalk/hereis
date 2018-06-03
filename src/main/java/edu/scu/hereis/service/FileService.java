@@ -44,6 +44,9 @@ FileService {
     @Value("${image.default-img-URL}")
     private String defaultImageURL;
 
+    @Value("${image.url-prefix}")
+    private String imageUrlPrefix;
+
     @Autowired
     private UserMapper userMapper;
     @Autowired
@@ -171,7 +174,7 @@ FileService {
         if (spot == null) {
             throw new SpotException(SPOT_EMPTY_ERROR_CODE, SPOT_EMPTY_ERROR);
         }
-        return spot.getBgImg();
+        return imageUrlPrefix +spot.getBgImg();
     }
     /**
      * 获取菜单图片URL
@@ -183,7 +186,7 @@ FileService {
         if (menu == null) {
             throw new MenuServiceException(NOT_EXIST);
         }
-        return menu.getImgPath();
+        return imageUrlPrefix +menu.getImgPath();
     }
 
     /**
