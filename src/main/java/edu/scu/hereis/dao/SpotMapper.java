@@ -98,4 +98,11 @@ public interface SpotMapper {
      * @mbg.generated Fri Apr 20 16:26:09 CST 2018
      */
     int updateByPrimaryKey(Spot record);
+
+    /**
+     * 获取上一条插入的记录的自增id
+     * @param sql sql语句
+     * @return 记录id
+     */
+    int selectLastInsertId(String sql);
 }

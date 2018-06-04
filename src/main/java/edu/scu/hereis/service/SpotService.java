@@ -99,7 +99,7 @@ public class SpotService {
      * @return
      */
     public Spot getSpotByID(Integer id) {
-        Spot spot = null;
+        Spot spot;
         try {
              spot = spotMapper.selectByPrimaryKey(id);
         }
@@ -107,6 +107,21 @@ public class SpotService {
             throw new SpotException(UNKNOWN_ERROR_CODE, e.getMessage());
         }
         return spot;
+    }
+
+    /**
+     * 返回上一条被插入的记录的自增id，必须插入后马上使用
+     * @return id
+     */
+    public Integer getLastInsertId() {
+
+        Integer id;
+        try {
+            id = spotMapper.selectLastInsertId("select last_insert_id()");
+        } catch (RuntimeException e) {
+            throw new SpotException(UNKNOWN_ERROR_CODE, e.getMessage());
+        }
+        return id;
     }
 
     /**

@@ -315,4 +315,7 @@
       category = #{category,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectLastInsertId" parameterType="String" resultType="Integer">
+    ${value}
+  </select>
 </mapper>
