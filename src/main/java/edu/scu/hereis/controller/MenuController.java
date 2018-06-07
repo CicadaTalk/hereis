@@ -27,6 +27,7 @@ public class MenuController {
 
     /**
      * 根据spotId获取详细菜单信息
+     *
      * @param spotId 热点id
      * @return 详细菜单信息
      */
@@ -43,7 +44,7 @@ public class MenuController {
         for (String category :
                 categories) {
             //先获取该分类下的菜单
-            menus = menuService.getMenuByCategory(category);
+            menus = menuService.getMenuByCategory(spotId, category);
             //再封装返回结果
             menuResult = new MenuResult(category, menus);
             menuResultArray[i++] = menuResult;
@@ -54,6 +55,7 @@ public class MenuController {
 
     /**
      * 添加新的菜单
+     *
      * @param menu 菜单对象
      * @return
      */
