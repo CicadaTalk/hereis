@@ -1,6 +1,9 @@
 package edu.scu.hereis.wxresult;
 
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +28,7 @@ public class ScenicSpotResult {
     /**
      * 景点注意事项
      */
-    private String warning;
+    private String[] warning;
 
     /**
      * 构造函数
@@ -47,7 +50,10 @@ public class ScenicSpotResult {
         }
         this.activities = activityArray;
 
-        this.warning = warning;
+        //解析JSON字符串
+        JSONArray jsonArray = JSONObject.parseArray(warning);
+        this.warning = new String[jsonArray.size()];
+        jsonArray.toArray(this.warning);
     }
 
     public int getSpotId() {
@@ -74,11 +80,11 @@ public class ScenicSpotResult {
         this.activities = activities;
     }
 
-    public String getWarning() {
+    public String[] getWarning() {
         return warning;
     }
 
-    public void setWarning(String warning) {
+    public void setWarning(String[] warning) {
         this.warning = warning;
     }
 }
