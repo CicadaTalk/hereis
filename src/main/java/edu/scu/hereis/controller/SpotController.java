@@ -63,8 +63,9 @@ public class SpotController {
      * 添加一个热点到数据库
      * @param spot
      */
+    @ResponseBody
     @PostMapping("/addSpot")
-    public Integer addSpot(Spot spot){
+    public int addSpot(Spot spot){
 
         //添加spot到数据库
         spotService.insertSpot(spot);
