@@ -105,4 +105,11 @@ public interface MenuMapper {
      * @return 返回所有分类的List
      */
     List<String> selectAllCategoryBySpotId(int spotId);
+
+    /**
+     * 获取上一条插入的记录的自增id
+     * @param sql sql语句
+     * @return 记录id
+     */
+    int selectLastInsertId(String sql);
 }
