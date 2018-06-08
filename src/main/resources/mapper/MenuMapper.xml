@@ -306,6 +306,7 @@
   <select id="selectAllCategoryBySpotId" parameterType="int" resultType="String">
     SELECT category FROM menu WHERE spot_id = #{spotId} GROUP BY category
   </select>
+  
   <!--获取上一个插入记录的自增id-->
   <select id="selectLastInsertId" parameterType="String" resultType="Integer">
     ${value}

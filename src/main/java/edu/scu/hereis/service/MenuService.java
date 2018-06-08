@@ -124,17 +124,17 @@ public class MenuService {
      * @param category 菜单类别
      * @return 返回所有菜单组成的列表
      */
-    public List<Menu> getMenuByCategory(String category) {
+    public List<Menu> getMenuByCategory(Integer spotId, String category) {
 
         //检查输入
-        if (null == category) {
+        if (null == spotId || spotId <= 0 || null == category) {
             throw new MenuServiceException(MenuServiceException.INVALID_INPUT);
         }
 
         //根据类别查找菜单
         MenuMapper menuMapper = sqlSession.getMapper(MenuMapper.class);
         MenuExample menuExample = new MenuExample();
-        menuExample.createCriteria().andCategoryEqualTo(category);
+        menuExample.createCriteria().andCategoryEqualTo(category).andSpotIdEqualTo(spotId);
 
         List<Menu> menus = menuMapper.selectByExample(menuExample);
 

@@ -43,17 +43,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
 
         http.authorizeRequests().antMatchers("/*",
-                "/fail").permitAll()//无需登录认证权限访问
+                "/getCourseByClassroom",//获取课程信息
+                "/uploadUserImage",//上传用户头像
+                "/getMenuBySpotId",//获取菜单
+                "/getScenicSpotById",//获取景点信息
+                "/getClassroomList",//获取课程列表
+                "/getSpotsByGPS",//获取景点
+                "/addSpot",//添加景点
+                "/getCommentsById",//获取评论
+                "/fail",
+                "/images/**").permitAll()//无需登录认证权限访问
                 .anyRequest().authenticated() //其他所有资源需要认证，登陆后访问
-                .antMatchers().hasAnyRole()
+                .antMatchers("/addComment").hasAnyRole()
                 .antMatchers("/admin").hasRole(UserService.AUTHORIZED) //登陆之后拥有"ADMIN"权限才能够访问，否则会出现“403”权限不足的提示
                 .and()
                 .formLogin() //表单登陆
                 //.loginPage("/loginpage")
-                //.loginProcessingUrl("/login") //指定登陆页面为"/login"
+                .loginProcessingUrl("/login") //指定登陆页面为"/login"
+                .usernameParameter("code")
                 .successHandler(loginSuccessHandler) //
                 .failureUrl("/fail")
-                .defaultSuccessUrl("/index")//登录成功跳转页面
+                .defaultSuccessUrl("/")//登录成功跳转页面
                 .and()
                 .rememberMe() //登陆后记住用户，下次自动登录，数据库中必须存在名为persistent_logins的表
                 .tokenValiditySeconds(1209600);

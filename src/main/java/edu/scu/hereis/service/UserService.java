@@ -148,6 +148,30 @@ public class UserService {
         return;
     }
 
+    /**
+     * 判断对应Id的用户是否存在
+     * @param hereisId
+     */
+    public boolean isExsist(String hereisId){
+
+        //检查输入是否合法
+        if (null == hereisId) {
+            throw new UserServiceException(UserServiceException.INVALID_INPUT);
+        }
+
+        //获取用户信息
+        User user = null;
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        user = userMapper.selectByPrimaryKey(hereisId);
+
+        //判断用户是否存在
+        if (null == user) {
+            return false;
+        }else {
+            return true;
+        }
+    }
+
 
     /**
      * 传入hereisId和role修改对应的用户的角色

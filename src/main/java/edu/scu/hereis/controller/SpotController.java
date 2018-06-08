@@ -22,11 +22,10 @@ public class SpotController {
     private SpotService spotService;
 
     @RequestMapping("/getSpotsByGPS")
-    public List<SpotResult> getSpotsByGPS(Double gpsLng, Double gpsLat, Double r) {
+    public List<Spot> getSpotsByGPS(Double gpsLng, Double gpsLat, Double r) {
         // TODO: 验证数据合法性
         List<Spot> spotList = spotService.getSpotsByGPS(gpsLng - r, gpsLng + r, gpsLat - r, gpsLat + r);
-        List<SpotResult> spotResultList = SpotResult.getSpotResultList(spotList);
-        return spotResultList;
+        return spotList;
     }
 
     /**

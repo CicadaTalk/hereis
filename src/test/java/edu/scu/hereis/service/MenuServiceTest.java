@@ -71,7 +71,7 @@ public class MenuServiceTest {
      */
     @Test
     public void getMenuByCategory() {
-        List<Menu> menus = menuService.getMenuByCategory("热菜");
+        List<Menu> menus = menuService.getMenuByCategory(197,"default");
         for (Menu menu :
                 menus) {
             System.out.println(menu);
