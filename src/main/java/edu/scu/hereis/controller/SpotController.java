@@ -61,16 +61,13 @@ public class SpotController {
 
     /**
      * 添加一个热点到数据库
-     *
      * @param spot
      */
-    @ResponseBody
     @PostMapping("/addSpot")
-    public void addSpot(Spot spot) {
+    public Integer addSpot(Spot spot){
 
         //添加spot到数据库
         spotService.insertSpot(spot);
-
-        System.out.println(spot);
+        return spotService.getLastInsertId();
     }
 }
