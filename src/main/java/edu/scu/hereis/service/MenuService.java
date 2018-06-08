@@ -160,4 +160,20 @@ public class MenuService {
 
         return menu;
     }
+
+    /**
+     * 返回上一条被插入的记录的自增id，必须插入后马上使用
+     * @return id
+     */
+    public Integer getLastInsertId() {
+
+        Integer id;
+        try {
+            MenuMapper menuMapper = sqlSession.getMapper(MenuMapper.class);
+            id = menuMapper.selectLastInsertId("select last_insert_id()");
+        } catch (RuntimeException e) {
+            throw new MenuServiceException(MenuServiceException.INVALID_INPUT);
+        }
+        return id;
+    }
 }

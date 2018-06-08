@@ -72,3 +72,5 @@ public class MenuController {
         return menuService.getLastInsertId();
     }
 }
+
+
