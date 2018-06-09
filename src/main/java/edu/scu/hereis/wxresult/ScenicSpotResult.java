@@ -126,7 +126,7 @@ class Activity {
         this.spotId = activity.getSpotId();
         this.intro = activity.getIntro();
 
-        SimpleDateFormat format = new SimpleDateFormat("MM-dd HH:mm");
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
         this.beginTime = format.format(activity.getBeginTime());
         this.endTime = format.format(activity.getEndTime());
 
